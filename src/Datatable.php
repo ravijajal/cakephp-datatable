@@ -1,6 +1,6 @@
 <?php
 
-namespace Datatable;
+namespace Jajal\Datatable;
 
 use Cake\Http\ServerRequest;
 use Cake\ORM\Query;
