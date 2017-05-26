@@ -1,0 +1,27 @@
+{
+    "name": "ravijajal/cakephp-datatable",
+    "type": "library",
+    "description": "Datatable gird generating class for CakePHP framework.",
+    "keywords": [
+        "Datatable",
+        "CakePHP"
+    ],
+    "homepage": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ravi Jajal"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "cakephp/cakephp": "~3.0",
+        "symfony/validator": "^3.2",
+        "symfony/property-access": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jajal\\Datatable\\": "src"
+        }
+    }
+}
