@@ -91,9 +91,9 @@ class Datatable {
                     if (isset($column['searchEmpty'])) {
                         $html .= '<option value="">' . $column['searchEmpty'] . '</option>';
                     }
-                    foreach ($column['searchOptions']as $value => $label) {
+                    foreach ($column['searchOptions'] as $value => $label) {
                         $seletecdHtml = '';
-                        if ($searchValue != "" && $searchValue == $value) {
+                        if ((isset($column['searchSelected']) && $column['searchSelected'] == $value) || ($searchValue != "" && $searchValue == $value)) {
                             $seletecdHtml = ' selected = "selected" ';
                         }
                         $html .= '<option value="' . $value . '" ' . $seletecdHtml . '>' . $label . '</option>';
