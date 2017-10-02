@@ -274,7 +274,7 @@ class Datatable {
                             new Type('array'),
                                 ]),
                         'searchSelected' => new Optional([
-                            new NotBlank(),
+                            new Optional(),
                             new Type('string'),
                                 ]),
                         'htmlOptions' => new Optional([
