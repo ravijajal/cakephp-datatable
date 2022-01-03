@@ -128,7 +128,15 @@ class Datatable {
     public function fields() {
         $dbColumns = [];
         foreach ($this->config('database') as $dbColumn) {
-            $dbColumns[] = $dbColumn['name'];
+            if(is_array($dbColumn['name'])) {
+                foreach($dbColumn['name'] as $key => $val) {
+                    $dbColumns[$key] = $val;    
+                }
+            }
+            else {
+                $dbColumns[] = $dbColumn['name'];
+            }
+            
         }
         return $dbColumns;
     }
@@ -145,7 +153,14 @@ class Datatable {
             $this->validateOrder($order);
             $columnName = $columnsArr[$order['column']]['data'];
             if (isset($databaseConfig[$columnName])) {
-                $query->order([$databaseConfig[$columnName]['name'] => $order['dir']]);
+                if(is_array($databaseConfig[$columnName]['name'])) {
+                    foreach($databaseConfig[$columnName]['name'] as $key => $val) {
+                        $query->order([$val => $order['dir']]);
+                    }
+                }
+                else {
+                    $query->order([$databaseConfig[$columnName]['name'] => $order['dir']]);
+                }
             }
         }
         $whereArr = [];
@@ -291,7 +306,6 @@ class Datatable {
                     new Collection([
                         'name' => new Required([
                             new NotBlank(),
-                            new Type('string'),
                                 ]),
                         'search' => new Optional([
                             new Type('boolean'),
@@ -368,8 +382,6 @@ class Datatable {
         $validator = new Validator();
         $searchValidator = new Validator();
         $validator->requirePresence('draw')->numeric('draw');
-//        $validator->requirePresence('length')->numeric('length');
-//        $validator->requirePresence('start')->numeric('start');
         $validator->requirePresence('length')->allowEmpty('length');
         $validator->requirePresence('start')->allowEmpty('start');
         $validator->requirePresence('search')->isArray('search');
