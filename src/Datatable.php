@@ -347,10 +347,10 @@ class Datatable {
         $validator = new Validator();
         $searchValidator = new Validator();
         $validator->requirePresence('data');
-        $validator->requirePresence('name')->allowEmpty('name');
+        $validator->requirePresence('name')->allowEmptyString('name');
         $validator->requirePresence('searchable')->inList('searchable', ['true', 'false']);
         $validator->requirePresence('orderable')->inList('orderable', ['true', 'false']);
-        $searchValidator->requirePresence('value')->allowEmpty('value');
+        $searchValidator->requirePresence('value')->allowEmptyString('value');
         $searchValidator->requirePresence('regex')->inList('regex', ['true', 'false']);
         $validator->requirePresence('search')->isArray('search');
         $validator->addNested('search', $searchValidator);
@@ -382,10 +382,10 @@ class Datatable {
         $validator = new Validator();
         $searchValidator = new Validator();
         $validator->requirePresence('draw')->numeric('draw');
-        $validator->requirePresence('length')->allowEmpty('length');
-        $validator->requirePresence('start')->allowEmpty('start');
+        $validator->requirePresence('length')->allowEmptyString('length');
+        $validator->requirePresence('start')->allowEmptyString('start');
         $validator->requirePresence('search')->isArray('search');
-        $searchValidator->requirePresence('value')->allowEmpty('value');
+        $searchValidator->requirePresence('value')->allowEmptyString('value');
         $searchValidator->requirePresence('regex')->inList('regex', ['true', 'false']);
         $validator->addNested('search', $searchValidator);
         $errors = $validator->errors($validate);
