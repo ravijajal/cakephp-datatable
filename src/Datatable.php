@@ -354,7 +354,7 @@ class Datatable {
         $searchValidator->requirePresence('regex')->inList('regex', ['true', 'false']);
         $validator->requirePresence('search')->isArray('search');
         $validator->addNested('search', $searchValidator);
-        $errors = $validator->errors($column);
+        $errors = $validator->validate($column);
         if (!empty($errors)) {
             throw new PhpCoreException('Invalid Param : ' . json_encode($errors));
         }
@@ -365,7 +365,7 @@ class Datatable {
         $validator = new Validator();
         $validator->requirePresence('column')->numeric('column');
         $validator->requirePresence('dir')->inList('dir', ['asc', 'desc']);
-        $errors = $validator->errors($order);
+        $errors = $validator->validate($order);
         if (!empty($errors)) {
             throw new PhpCoreException('Invalid Param : ' . json_encode($errors));
         }
@@ -388,7 +388,7 @@ class Datatable {
         $searchValidator->requirePresence('value')->allowEmptyString('value');
         $searchValidator->requirePresence('regex')->inList('regex', ['true', 'false']);
         $validator->addNested('search', $searchValidator);
-        $errors = $validator->errors($validate);
+        $errors = $validator->validate($validate);
         if (!empty($errors)) {
             throw new PhpCoreException('Invalid Param : ' . json_encode($errors));
         }
